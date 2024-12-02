@@ -10,12 +10,6 @@ export class CharactersService {
     return response.data.results;
   }
 
-  async getCharacterByName(name: string) {
-    const response = await axios.get(
-      `https://rickandmortyapi.com/api/character/?name=${name}`,
-    );
-    return response.data;
-  }
 
   async getFilteredCharacters(filters: any) {
     let url = 'https://rickandmortyapi.com/api/character?';

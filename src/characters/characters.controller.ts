@@ -1,5 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
 import { CharactersService } from './characters.service';
+import { FilterCharactersDto } from './filter-characters.dto';
 
 @Controller('characters')
 export class CharactersController {
@@ -11,7 +12,7 @@ export class CharactersController {
   }
 
   @Get('filter')
-  async getFilteredCharacters(@Query() filters: any) {
+  async getFilteredCharacters(@Query() filters: FilterCharactersDto) {
     return this.charactersService.getFilteredCharacters(filters);
   }
 
