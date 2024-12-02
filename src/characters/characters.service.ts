@@ -10,6 +10,12 @@ export class CharactersService {
     return response.data.results;
   }
 
+  async getCharacterById(id: number) {
+    const response = await axios.get(
+      `https://rickandmortyapi.com/api/character/${id}`,
+    );
+    return response.data;
+  }
 
   async getFilteredCharacters(filters: any) {
     let url = 'https://rickandmortyapi.com/api/character?';
@@ -25,13 +31,6 @@ export class CharactersService {
     }
 
     const response = await axios.get(url);
-    return response.data;
-  }
-
-  async getCharacterById(id: number) {
-    const response = await axios.get(
-      `https://rickandmortyapi.com/api/character/${id}`,
-    );
     return response.data;
   }
 }

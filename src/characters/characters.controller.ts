@@ -1,6 +1,7 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query, ValidationPipe } from '@nestjs/common';
 import { CharactersService } from './characters.service';
-import { FilterCharactersDto } from './filter-characters.dto';
+import { FilterCharactersDto } from './dto/filter-characters.dto';
+
 
 @Controller('characters')
 export class CharactersController {
@@ -12,7 +13,7 @@ export class CharactersController {
   }
 
   @Get('filter')
-  async getFilteredCharacters(@Query() filters: FilterCharactersDto) {
+  async getFilteredCharacters(@Query(new ValidationPipe({ whitelist: true, transform: true })) filters: FilterCharactersDto) {
     return this.charactersService.getFilteredCharacters(filters);
   }
 
@@ -21,3 +22,5 @@ export class CharactersController {
     return this.charactersService.getCharacterById(id);
   }
 }
+
+
